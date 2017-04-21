@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">WeatherApp</string>
+    <string name="app_name">Weather App</string>
     <string name="action_settings">Settings</string>
     <string name="enter_country_name">Enter Country Name</string>
+    <string name="loading_country_name">Loading Country Name</string>
     <string name="weather_api_key">8947a9bb31e4a2cdd7043830fef8acb3</string>
+    <string name="select_this_city">Select this City</string>
 </resources>

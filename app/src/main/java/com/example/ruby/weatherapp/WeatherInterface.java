@@ -7,6 +7,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Ruby on 4/21/2017.
@@ -15,9 +16,9 @@ import retrofit2.http.Path;
 public interface WeatherInterface {
     String BASE_URL = "http://api.openweathermap.org/data/2.5/";
 
-    @GET("weather?appid={key}&id={id}&units=metric")
-    Call<WeatherBundle> getWeather(@Path("key") String key, @Path("id") String id);
+    @GET("weather?units=metric")
+    Call<WeatherBundle> getWeather(@Query("appid") String key, @Query("id") String id);
 
-    @GET("forecast?appid={key}&id={id}")
-    Call<WeatherBundle> getForecast(@Path("key") String key, @Path("id") String id);
+    @GET("forecast?units=metric")
+    Call<WeatherBundle> getForecast(@Query("appid") String key, @Query("id") String id);
 }

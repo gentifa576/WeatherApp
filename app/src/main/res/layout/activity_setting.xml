@@ -13,4 +13,11 @@
         android:layout_height="wrap_content"
         android:hint="@string/enter_country_name" />
 
+    <Button
+        android:id="@+id/select_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_this_city"
+        android:onClick="saveId"/>
+
 </LinearLayout>

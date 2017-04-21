@@ -1,12 +1,18 @@
 package com.example.ruby.weatherapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
+import android.content.SharedPreferences.Editor;
 
+import com.android.internal.util.Predicate;
 import com.example.ruby.weatherapp.Model.City;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,14 +30,23 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SettingActivity extends AppCompatActivity {
 
     private AutoCompleteTextView countryInput;
+    private Button selectBtn;
     private List<City> cities;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        prefs = getSharedPreferences("pref", 0);
+
         countryInput = (AutoCompleteTextView)findViewById(R.id.country_input);
+        countryInput.setEnabled(false);
+        countryInput.setHint(getResources().getString(R.string.loading_country_name));
+
+        selectBtn = (Button)findViewById(R.id.select_button);
+        selectBtn.setEnabled(false);
 
         Gson gson = new GsonBuilder()
                 .create();
@@ -59,7 +74,10 @@ public class SettingActivity extends AppCompatActivity {
                     ArrayAdapter<String> autoCompleteAdapter = new ArrayAdapter<>(getApplicationContext(), R.layout.text, citiesStr);
 
                     countryInput.setAdapter(autoCompleteAdapter);
-                    Toast.makeText(SettingActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                    countryInput.setEnabled(true);
+                    countryInput.setHint(getResources().getString(R.string.enter_country_name));
+
+                    selectBtn.setEnabled(true);
                 }
                 else
                 {
@@ -72,5 +90,17 @@ public class SettingActivity extends AppCompatActivity {
                 Toast.makeText(SettingActivity.this, "Fail " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void saveId(View v){
+        final String[] split = countryInput.getText().toString().split(", ");
+        for(City c : cities){
+            if(c.getName().equals(split[0]) && c.getCountry().equals(split[1])){
+                Editor editor = prefs.edit();
+                editor.putInt("locId", c.getId());
+                editor.commit();
+                Toast.makeText(this, "Location Saved", Toast.LENGTH_SHORT).show();
+            }
+        }
+        finish();
     }
 }

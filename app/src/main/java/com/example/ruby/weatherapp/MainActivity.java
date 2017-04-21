@@ -1,6 +1,7 @@
 package com.example.ruby.weatherapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -54,8 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-    }
 
+        SharedPreferences prefs = getSharedPreferences("pref", 0);
+        if(!prefs.contains("locId")){
+            Intent settingIntent = new Intent(this, SettingActivity.class);
+            startActivity(settingIntent);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
