@@ -1,5 +1,6 @@
 package com.example.ruby.weatherapp;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -72,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent settingIntent = new Intent(this, SettingActivity.class);
+            startActivity(settingIntent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -95,9 +97,9 @@ public class MainActivity extends AppCompatActivity {
             switch(position)
             {
                 case 0:
-                    return null;
+                    return TodayFragment.newInstance();
                 case 1:
-                    return null;
+                    return WeekFragment.newInstance();
                 default:
                     return null;
             }
@@ -105,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 2;
         }
 
