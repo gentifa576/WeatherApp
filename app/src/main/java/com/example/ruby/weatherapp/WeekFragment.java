@@ -18,6 +18,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,8 +41,7 @@ public class WeekFragment extends Fragment{
     private WeatherInterface weatherInterface;
     private SharedPreferences prefs;
     private WeatherBundle weatherBundle;
-    private ArrayList<String> dates;
-    public static String PREV_DATE = "";
+    ArrayList<WeatherBundle.WeatherList> sectionList;
 
     public WeekFragment() {
         // Required empty public constructor
@@ -86,7 +87,13 @@ public class WeekFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-        //doCall();
+        doCall();
+    }
+
+    public static int dateToNum(String date){
+        String[] split = date.split("-");
+        int val = Integer.parseInt(split[0])*365 + Integer.parseInt(split[1])*30 + Integer.parseInt(split[2]);
+        return val;
     }
 
     public void doCall(){
@@ -99,9 +106,15 @@ public class WeekFragment extends Fragment{
             public void onResponse(Call<WeatherBundle> call, Response<WeatherBundle> response) {
                 if(response.isSuccessful()) {
                     weatherBundle = response.body();
-                    dates = new ArrayList<>();
+                    sectionList = new ArrayList<>();
+                    sectionList.clear();
+                    int prevDate = 0;
                     for(WeatherBundle.WeatherList wl : weatherBundle.getList()){
-                        dates.add(wl.getDateText().split(" ")[0]);
+                        String[] split = wl.getDateText().split(" ");
+                        if(dateToNum(split[0]) > prevDate){
+                            prevDate = dateToNum(split[0]);
+                            sectionList.add(wl);
+                        }
                     }
                     CustomAdapter customAdapter = new CustomAdapter(
                             WeekFragment.this.getContext(),
@@ -143,12 +156,16 @@ public class WeekFragment extends Fragment{
             WeatherBundle.WeatherList wl = getItem(position);
 
             String[] splitDt = wl.getDateText().split(" ");
+            headerText.setVisibility(View.GONE);
 
-            if(splitDt[0].equals(PREV_DATE)) headerText.setVisibility(View.GONE);
-            else {
-                headerText.setText(splitDt[0]);
-                PREV_DATE = splitDt[0];
+            for(WeatherBundle.WeatherList temp : sectionList){
+                if(temp.equals(wl)){
+                    headerText.setVisibility(View.VISIBLE);
+                    headerText.setText(splitDt[0]);
+                    break;
+                }
             }
+
             timeText.setText(splitDt[1]);
 
             weatherText.setText(wl.getWeather().get(0).getMain());
