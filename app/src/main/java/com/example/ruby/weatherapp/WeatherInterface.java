@@ -1,12 +1,10 @@
 package com.example.ruby.weatherapp;
 
+import com.example.ruby.weatherapp.Model.CurrentWeather;
 import com.example.ruby.weatherapp.Model.WeatherBundle;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -17,7 +15,7 @@ public interface WeatherInterface {
     String BASE_URL = "http://api.openweathermap.org/data/2.5/";
 
     @GET("weather?units=metric")
-    Call<WeatherBundle> getWeather(@Query("appid") String key, @Query("id") String id);
+    Call<CurrentWeather> getWeather(@Query("appid") String key, @Query("id") String id);
 
     @GET("forecast?units=metric")
     Call<WeatherBundle> getForecast(@Query("appid") String key, @Query("id") String id);

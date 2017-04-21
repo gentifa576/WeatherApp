@@ -27,103 +27,104 @@ public class WeatherBundle {
     public void setCount(int count) {
         this.count = count;
     }
+
+    public class WeatherList{
+        private String dt;
+        private MainData main;
+        private List<Weather> weather;
+        @SerializedName("dt_txt") private String dtText;
+
+        public String getDt() {
+            return dt;
+        }
+
+        public void setDt(String dt) {
+            this.dt = dt;
+        }
+
+        public MainData getMain() {
+            return main;
+        }
+
+        public void setMain(MainData main) {
+            this.main = main;
+        }
+
+        public List<Weather> getWeather() {
+            return weather;
+        }
+
+        public void setWeather(List<Weather> weather) {
+            this.weather = weather;
+        }
+
+        public String getDateText() {
+            return dtText;
+        }
+
+        public void setDateText(String dateText) {
+            this.dtText = dateText;
+        }
+    }
+
+    public class MainData{
+        private float temp;
+        @SerializedName("temp_min") private float minTemp;
+        @SerializedName("temp_max") private float maxTemp;
+
+        public float getTemp() {
+            return temp;
+        }
+
+        public void setTemp(float temp) {
+            this.temp = temp;
+        }
+
+        public float getMinTemp() {
+            return minTemp;
+        }
+
+        public void setMinTemp(float minTemp) {
+            this.minTemp = minTemp;
+        }
+
+        public float getMaxTemp() {
+            return maxTemp;
+        }
+
+        public void setMaxTemp(float maxTemp) {
+            this.maxTemp = maxTemp;
+        }
+    }
+
+    public class Weather{
+        private int id;
+        private String main;
+        private String description;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getMain() {
+            return main;
+        }
+
+        public void setMain(String main) {
+            this.main = main;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+    }
 }
 
-class WeatherList{
-    private String dt;
-    private MainData main;
-    private List<Weather> weather;
-    @SerializedName("dt_txt") private String dtText;
-
-    public String getDt() {
-        return dt;
-    }
-
-    public void setDt(String dt) {
-        this.dt = dt;
-    }
-
-    public MainData getMain() {
-        return main;
-    }
-
-    public void setMain(MainData main) {
-        this.main = main;
-    }
-
-    public List<Weather> getWeather() {
-        return weather;
-    }
-
-    public void setWeather(List<Weather> weather) {
-        this.weather = weather;
-    }
-
-    public String getDateText() {
-        return dtText;
-    }
-
-    public void setDateText(String dateText) {
-        this.dtText = dateText;
-    }
-}
-
-class MainData{
-    private float temp;
-    @SerializedName("temp_min") private float minTemp;
-    @SerializedName("temp_max") private float maxTemp;
-
-    public float getTemp() {
-        return temp;
-    }
-
-    public void setTemp(float temp) {
-        this.temp = temp;
-    }
-
-    public float getMinTemp() {
-        return minTemp;
-    }
-
-    public void setMinTemp(float minTemp) {
-        this.minTemp = minTemp;
-    }
-
-    public float getMaxTemp() {
-        return maxTemp;
-    }
-
-    public void setMaxTemp(float maxTemp) {
-        this.maxTemp = maxTemp;
-    }
-}
-
-class Weather{
-    private int id;
-    private String main;
-    private String description;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getMain() {
-        return main;
-    }
-
-    public void setMain(String main) {
-        this.main = main;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-}

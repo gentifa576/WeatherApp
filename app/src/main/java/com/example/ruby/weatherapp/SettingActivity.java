@@ -1,24 +1,19 @@
 package com.example.ruby.weatherapp;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
-import android.content.SharedPreferences.Editor;
 
-import com.android.internal.util.Predicate;
 import com.example.ruby.weatherapp.Model.City;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;

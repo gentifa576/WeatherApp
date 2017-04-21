@@ -1,4 +1,5 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -6,9 +7,143 @@
     tools:context="com.example.ruby.weatherapp.TodayFragment">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/location_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Today Fragment" />
-</LinearLayout>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="14dp"
+        android:text="TextView"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/date_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/location_txt"
+        android:layout_alignStart="@+id/location_txt"
+        android:layout_below="@+id/location_txt"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/weather_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="TextView"
+        android:textSize="30sp"
+        android:layout_below="@+id/date_txt"
+        android:layout_alignLeft="@+id/date_txt"
+        android:layout_alignStart="@+id/date_txt" />
+
+    <TextView
+        android:id="@+id/desc_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/weather_txt"
+        android:layout_alignStart="@+id/weather_txt"
+        android:layout_below="@+id/weather_txt"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/temp_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="30sp"
+        android:layout_marginLeft="59dp"
+        android:layout_marginStart="59dp"
+        android:layout_alignBaseline="@+id/weather_txt"
+        android:layout_alignBottom="@+id/weather_txt"
+        android:layout_toRightOf="@+id/weather_txt"
+        android:layout_toEndOf="@+id/weather_txt" />
+
+    <TextView
+        android:id="@+id/max_temp_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="15sp"
+        android:layout_alignTop="@+id/temp_txt"
+        android:layout_toRightOf="@+id/temp_txt"
+        android:layout_toEndOf="@+id/temp_txt" />
+
+    <TextView
+        android:id="@+id/min_temp_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="15sp"
+        android:layout_below="@+id/max_temp_txt"
+        android:layout_toRightOf="@+id/temp_txt"
+        android:layout_toEndOf="@+id/temp_txt" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="90dp"
+        android:id="@+id/linearLayout2"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/desc_txt"
+        android:layout_toEndOf="@+id/desc_txt">
+
+        <TextView
+            android:id="@+id/wind_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/weather_txt"
+            android:layout_alignRight="@+id/weather_txt"
+            android:layout_below="@+id/desc_txt"
+            android:gravity="center"
+            android:text="Wind" />
+
+        <TextView
+            android:id="@+id/speed_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/deg_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignTop="@+id/linearLayout2"
+        android:layout_toLeftOf="@+id/min_temp_txt"
+        android:layout_toStartOf="@+id/min_temp_txt">
+
+        <TextView
+            android:id="@+id/cloud_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/wind_txt"
+            android:layout_alignBottom="@+id/wind_txt"
+            android:layout_toLeftOf="@+id/min_temp_txt"
+            android:layout_toStartOf="@+id/min_temp_txt"
+            android:gravity="center"
+            android:text="Cloud" />
+
+        <TextView
+            android:id="@+id/cloudiness_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="28sp" />
+    </LinearLayout>
+
+</RelativeLayout>
