@@ -6,7 +6,8 @@ package com.example.ruby.weatherapp.Model;
 
 public class City {
     private int id;
-    private String name, country;
+    private String name;
+    private String country;
 
     public int getId() {
         return id;

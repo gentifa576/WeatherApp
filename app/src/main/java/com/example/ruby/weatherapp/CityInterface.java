@@ -12,8 +12,6 @@ import retrofit2.http.GET;
  */
 
 public interface CityInterface {
-    String BASE_URL = "https://raw.githubusercontent.com/gentifa576/WeatherApp/master/";
-
     @GET("city.list.json")
     Call<List<City>> getCities();
 }
